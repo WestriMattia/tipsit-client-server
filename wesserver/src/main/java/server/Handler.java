@@ -1,5 +1,4 @@
     package server;
-
     import java.io.BufferedReader;
     import java.io.IOException;
     import java.io.InputStreamReader;
@@ -16,9 +15,7 @@
             this.s = s;
             contatore = c;
             try {
-                // per parlare
                 pr = new PrintWriter(s.getOutputStream(), true);
-                // per ascoltare
                 br = new BufferedReader(new InputStreamReader(s.getInputStream()));
             } catch (IOException e) {
                 e.printStackTrace();
@@ -28,12 +25,11 @@
         public void run() {
             try {
                 System.out.println(br.readLine());
-                pr.println("Ciao come ti chiami?"); // invio messaggio
-                String nome = br.readLine(); // ricevo: il nome
-                String nomeUpper = nome.toUpperCase(); // nome in maiuscolo
-                System.out.println("Utente di nome " + nomeUpper + " connesso"); // console: nome ricevuto
-                pr.println("Salve " + nomeUpper + " sei l'utente connesso numero " + contatore); // invio messaggio
-    
+                pr.println("Come ti chiami?"); 
+                String nome = br.readLine(); 
+                String nomeUpper = nome.toUpperCase(); 
+                System.out.println("Nome utente: " + nomeUpper + " connesso"); 
+                pr.println("Ciao " + nomeUpper + " sei l'utente numero " + contatore); 
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -43,5 +39,4 @@
                 e.printStackTrace();
             }
         }
-    
     }

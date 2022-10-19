@@ -1,9 +1,21 @@
 package server;
 
-public class App 
-{
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
+import java.net.ServerSocket;
+import java.net.Socket;
+
+public class App{
+  public static void main(String[] args) throws Exception {
+    ServerSocket ss = new ServerSocket(3000);
+    System.out.println("In ascolto sulla porta 3000");
+    int c = 1;
+    boolean running = true;
+    while (running) {
+      Socket s = ss.accept();
+      System.out.println("C connesso");
+      Handler client = new Handler(s, c);
+      c++;
+      client.start();
     }
+    ss.close();
+  }
 }
